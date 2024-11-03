@@ -51,8 +51,8 @@ class Server:
                 res.append(data[i])
             i += 1
         return {
-                "index": index,
-                "next_index": i if i < len(data) else None,
-                "page_size": len(res),
-                "data": res
-                }
+            "index": index,
+            "next_index": i if i < len(data) else None,
+            "page_size": len(res),
+            "data": res
+        }
