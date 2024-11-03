@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""
-Hypermedia pagination
-"""
+"""index range"""
 import csv
-from math import ceil
-from typing import List, Dict, Any, Tuple, Optional
-index_range = __import__('0-simple_helper_function').index_range
+import math
+from typing import List, Tuple
+
+
+def index_range(page: int, page_size: int) -> Tuple:
+    """define func"""
+    start = (page - 1) * page_size
+    end = start + page_size
+    return start, end
 
 
 class Server:
@@ -28,43 +32,23 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """Return the data at the appropriate page"""
+        """define func"""
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
-
-        indexes: Tuple[int, int] = index_range(page, page_size)
-        start: int = indexes[0]
-        end: int = indexes[1]
-        data: List[List] = self.dataset()
-
-        return data[start:end]
+        start, end = index_range(page, page_size)
+        data = self.dataset()
+        return data[start: end] if len(data) > start else []
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
-        """Return a dictionary with the following values:
-        - page_size: number elements in the page
-        - page: number of the current page
-        - data: data between [star:end]
-        - next_page: number of the next page
-        - prev_page: number of the prev page
-        - total_page: total number of pages
-        And calculate indexes to know the start and end.
-        Careful to calculate the data at first, before change the values of
-        page and page_size"""
-
-        data: List[List] = self.get_page(page, page_size)
-        dataset_size: int = len(self.dataset())
-        total_page: int = ceil(dataset_size / page_size)
-        page_size: int = len(data)
-        next_page: Optional[int] = page + 1 if page < total_page else None
-        prev_page: Optional[int] = page - 1 if page > 1 else None
-
-        dictionary: Dict[str, Any] = {
-            "page_size": page_size,
-            "page": page,
-            "data": data,
-            "next_page": next_page,
-            "prev_page": prev_page,
-            "total_pages": total_page
-        }
-
-        return dictionary
+        """define func"""
+        data = self.get_page(page, page_size)
+        data_len = len(self.dataset())
+        total_page = (data_len + (page_size - 1))  // page_size
+        return {
+                "page_size": page_size,
+                "page": page,
+                "data": data,
+                "next_page": page + 1 if page < total_page else None,
+                "prev_page": page - 1 if page > 1 else None,
+                "total_page": total_page 
+                }
