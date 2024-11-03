@@ -41,7 +41,7 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """define func"""
-        assert isinstance(index, int) and index > 0
+        assert isinstance(index, int) and index >= 0
         assert isinstance(page_size, int) and page_size > 0
         data = self.indexed_dataset()
         res = []
@@ -51,8 +51,8 @@ class Server:
                 res.append(data[i])
             i += 1
         return {
-                index: index,
-                next_index: index + page_size ,
-                page_size: len(res),
-                data: res
+                "index": index,
+                "next_index": i if i < len(data) else None,
+                "page_size": len(res),
+                "data": res
                 }
