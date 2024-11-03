@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """index range"""
-from typing import Tuple
 import csv
 import math
-from typing import List
+from typing import List, Tuple
 
 def index_range(page: int, page_size: int) -> Tuple:
     """define func"""
