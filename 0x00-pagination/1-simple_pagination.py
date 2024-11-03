@@ -4,6 +4,7 @@ import csv
 import math
 from typing import List, Tuple
 
+
 def index_range(page: int, page_size: int) -> Tuple:
     """define func"""
     start = (page - 1) * page_size
@@ -37,4 +38,3 @@ class Server:
         start, end = index_range(page, page_size)
         data = self.dataset()
         return data[start: end] if len(data) > start else []
-
