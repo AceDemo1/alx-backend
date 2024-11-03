@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""
-Simple pagination
-"""
+"""index range"""
+from typing import Tuple
 import csv
-from typing import List, Tuple
-index_range = __import__('0-simple_helper_function').index_range
+import math
+from typing import List
+
+def index_range(page: int, page_size: int) -> Tuple:
+    """define func"""
+    start = (page - 1) * page_size
+    end = start + page_size
+    return start, end
 
 
 class Server:
@@ -27,13 +32,10 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """Return the data at the appropriate page"""
+        """define func"""
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
+        start, end = index_range(page, page_size)
+        data = self.dataset()
+        return data[start: end] if len(data) > start else []
 
-        indexes: Tuple[int, int] = index_range(page, page_size)
-        start: int = indexes[0]
-        end: int = indexes[1]
-        data: List[List] = self.dataset()
-
-        return data[start:end]
