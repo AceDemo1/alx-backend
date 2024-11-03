@@ -45,10 +45,10 @@ class Server:
         data_len = len(self.dataset())
         total_page = (data_len + (page_size - 1))  // page_size
         return {
-                "page_size": page_size,
+                "page_size": len(data),
                 "page": page,
                 "data": data,
                 "next_page": page + 1 if page < total_page else None,
                 "prev_page": page - 1 if page > 1 else None,
-                "total_page": total_page 
+                "total_pages": total_page 
                 }
