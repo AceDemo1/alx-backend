@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create LIFO cache"""
+"""Create LRU cache"""
 from collections import OrderedDict
 from base_caching import BaseCaching
 
@@ -25,5 +25,6 @@ class LRUCache(BaseCaching):
     def get(self, key):
         """get value of key"""
         value = self.cache_data.pop(key) if key in self.cache_data else None
-        self.cache_data[key] = value
+        if value:
+            self.cache_data[key] = value
         return value
