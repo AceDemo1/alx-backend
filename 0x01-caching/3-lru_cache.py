@@ -24,6 +24,6 @@ class LRUCache(BaseCaching):
 
     def get(self, key):
         """get value of key"""
-        value = self.cache_data.pop(key)
+        value = self.cache_data.pop(key) if key in self.cache_data else None
         self.cache_data[key] = value
         return value
