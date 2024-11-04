@@ -4,7 +4,7 @@ from collections import OrderedDict
 from base_caching import BaseCaching
 
 
-class FIFOCache(BaseCaching):
+class LIFOCache(BaseCaching):
     """define class"""
 
     def __init__(self):
