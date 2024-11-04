@@ -3,8 +3,10 @@
 from collections import OrderedDict
 from base_caching import BaseCaching
 
+
 class FIFOCache(BaseCaching):
     """define class"""
+
     def __init__(self):
         """initialize class"""
         super().__init__()
@@ -23,4 +25,3 @@ class FIFOCache(BaseCaching):
     def get(self, key):
         """get value of key"""
         return self.cache_data.get(key, None)
-        
