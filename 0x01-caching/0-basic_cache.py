@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Cache"""
+"""Create a cache class"""
 from base_caching import BaseCaching
 
 
