@@ -5,7 +5,14 @@ from base_caching import BaseCaching
 
 
 class LFUCache(BaseCaching):
-    """define class"""
+    """define class 
+    -----
+    -----
+    you dont need to use the pop method in both put and get method
+    it will work regardless
+    -----
+    -----
+    """
 
     def __init__(self):
         """initialize class"""
