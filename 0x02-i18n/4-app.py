@@ -22,8 +22,7 @@ def get_locale():
     """get lang"""
     lang = request.args.get('locale')
     return lang if lang in Config.LANGUAGES \
-            else request.accept_languages.best_match(
-        Config.LANGUAGES)
+           else request.accept_languages.best_match(Config.LANGUAGES)
 
 
 @app.route('/')
