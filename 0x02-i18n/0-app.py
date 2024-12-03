@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask, render_templete
+from flask import Flask, render_template
 ap = Flask(__name__)
 
 @ap.route('/')
