@@ -8,4 +8,4 @@ def welcome_page():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    ap.run(Debug=True)
+    ap.run(debug=True)
