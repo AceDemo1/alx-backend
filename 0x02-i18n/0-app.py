@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def welcome_page():
+    def welcome_page() -> str:
     """hompage"""
     return render_template('0-index.html')
 
