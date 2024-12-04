@@ -51,9 +51,7 @@ def get_user():
 @app.before_request
 def before_request():
     """run befor others"""
-    user = get_user()
-    if user:
-        g.user = user
+    g.user = get_user()
 
 
 if __name__ == '__main__':
