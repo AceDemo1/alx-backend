@@ -22,6 +22,7 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 @babel.localeselector
 def get_locale():
     """get lang"""
@@ -43,9 +44,9 @@ def get_user():
         usr_id = int(usr_id)
         if usr_id in users:
             return users.get(usr_id)
-    except:
+    except BaseException:
         return None
-    
+
 
 @app.before_request
 def before_request():
@@ -53,7 +54,7 @@ def before_request():
     user = get_user()
     if user:
         g.user = user
-    
+
 
 if __name__ == '__main__':
     app.run(debug=True)
