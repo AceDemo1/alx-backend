@@ -37,10 +37,22 @@ def get_locale():
     return Config.BABEL_DEFAULT_LOCALE
 
 
+@babel.timezoneselector
+def get_timezone():
+    """timezone"""
+    time = request.args.get('timezone')
+    if not time and g.user:
+        time = g.user.get('timezone')
+    try:
+        return pytz.timezone(time).zone
+    except pytz.exceptions.UnknownTimeZoneError:
+        return Config.BABEL_DEFAULT_TIMEZONE
+
+
 @app.route('/')
 def welcome_page() -> str:
     """hompage"""
-    return render_template('6-index.html')
+    return render_template('7-index.html')
 
 
 def get_user():
